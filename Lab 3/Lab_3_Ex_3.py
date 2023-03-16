@@ -63,6 +63,7 @@ class Coputation:
                     ldiv.append(x // i)
         return ldiv
 
+
 # A new instance of the Coputation class is created and assigned to the calculation variable
 calculation = Coputation()
 
@@ -80,7 +81,7 @@ while True:
     9. Exit
     Enter your choice: """)
 
-# Depending on the choice, the appropriate method is called from the calculation object with the necessary arguments
+    # Depending on the choice, the appropriate method is called from the calculation object with the necessary arguments
     if choice == "1":
         n = int(input("Enter a number to find its factorial: "))
         print(f"Factorial of {n} is {calculation.factorial(n)}")
