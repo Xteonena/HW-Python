@@ -4,7 +4,7 @@ class Coputation:
 
     def factorial(self, x):
         if x < 0:
-            raise ValueError("n must be a non-negative integer")
+            raise ValueError("x must be a non-negative integer")
         result = 1
         for i in range(1, x + 1):
             result *= i
@@ -12,7 +12,7 @@ class Coputation:
 
     def sum(self, x):
         if x < 1:
-            raise ValueError("n must be a positive integer")
+            raise ValueError("x must be a positive integer")
         result = 0
         for i in range(1, x + 1):
             result += i
@@ -41,7 +41,7 @@ class Coputation:
     @staticmethod
     def list_div(x):
         if x < 1:
-            raise ValueError("n must be a positive integer")
+            raise ValueError("x must be a positive integer")
         ldiv = []
         for i in range(1, int(x ** 0.5) + 1):
             if x % i == 0:
@@ -53,7 +53,7 @@ class Coputation:
     @staticmethod
     def list_div_prim(x):
         if x < 1:
-            raise ValueError("n must be a positive integer")
+            raise ValueError("x must be a positive integer")
         ldiv = []
         for i in range(2, int(x ** 0.5) + 1):
             if x % i == 0:
