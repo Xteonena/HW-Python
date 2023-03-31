@@ -1,24 +1,56 @@
-class Coputation:
+class Computation:
+    """
+    A class containing methods for various mathematical computations.
+    """
+
     def __init__(self):
         pass
 
-    def factorial(self, x):
+    @staticmethod
+    def factorial(x: int) -> int:
+        """
+        Computes the factorial of a non-negative integer x.
+        Args:
+            x (int): a non-negative integer
+        Returns:
+            int: the factorial of x
+        Raises:
+            ValueError: if x is negative
+        """
         if x < 0:
             raise ValueError("x must be a non-negative integer")
-        result = 1
+        results = 1
         for i in range(1, x + 1):
-            result *= i
-        return result
+            results *= i
+        return results
 
-    def sum(self, x):
+    @staticmethod
+    def sum(x: int) -> int:
+        """
+        Computes the sum of the first x positive integers.
+        Args:
+            x (int): a positive integer
+        Returns:
+            int: the sum of the first x positive integers
+        Raises:
+            ValueError: if x is not positive
+        """
         if x < 1:
             raise ValueError("x must be a positive integer")
-        result = 0
+        results = 0
         for i in range(1, x + 1):
-            result += i
-        return result
+            results += i
+        return results
 
-    def test_prim(self, x):
+    @staticmethod
+    def test_prim(x: int) -> bool:
+        """
+        Determines whether a given integer x is prime.
+        Args:
+            x (int): an integer to test for primality
+        Returns:
+            bool: True if x is prime, False otherwise
+        """
         if x <= 1:
             return False
         for i in range(2, int(x ** 0.5) + 1):
@@ -26,20 +58,45 @@ class Coputation:
                 return False
         return True
 
-    def test_prims(self, x1, x2):
+    def test_prims(self, x1: int, x2: int) -> bool:
         return self.test_prim(x1) and self.test_prim(x2)
 
-    def table_mult(self, x):
+    @staticmethod
+    def table_mult(x: int) -> str:
+        """
+        Generates a multiplication table for a given integer x.
+        Args:
+            x (int): the integer for which to generate a multiplication table
+        Yields:
+            str: a string representing one row of the multiplication table
+        """
         for i in range(1, 11):
-            print(f"{x} x {i} = {x * i}")
+            yield f"{x} x {i} = {x * i}"
 
-    def all_tables_mult(self):
+    @property
+    def all_tables_mult(self) -> str:
+        """
+        Generates multiplication tables for the numbers 1 through 9.
+        Returns:
+            str: a string containing all the multiplication tables
+        """
+        tables = []
         for i in range(1, 10):
-            print(f"\nMultiplication table for {i}:")
-            self.table_mult(i)
+            table = list(self.table_mult(i))
+            tables.append(f"\nMultiplication table for {i}:\n" + '\n'.join(table))
+        return '\n'.join(tables)
 
     @staticmethod
-    def list_div(x):
+    def list_div(x: int) -> list[int]:
+        """
+        Lists the divisors of a given integer x.
+        Args:
+            x (int): the integer for which to list the divisors
+        Returns:
+            list: a list of the divisors of x
+        Raises:
+            ValueError: if x is not positive
+        """
         if x < 1:
             raise ValueError("x must be a positive integer")
         ldiv = []
@@ -51,21 +108,33 @@ class Coputation:
         return ldiv
 
     @staticmethod
-    def list_div_prim(x):
+    def list_div_prim(x: int) -> list[int]:
+        """
+        Returns a list of all prime divisors of x.
+
+        Args:
+            x (int): A positive integer to find prime divisors for.
+
+        Returns:
+            list: A list of all prime divisors of x.
+
+        Raises:
+            ValueError: If x is less than 1.
+        """
         if x < 1:
             raise ValueError("x must be a positive integer")
         ldiv = []
         for i in range(2, int(x ** 0.5) + 1):
             if x % i == 0:
-                if Coputation().test_prim(i):
+                if Computation().test_prim(i):
                     ldiv.append(i)
-                if Coputation().test_prim(x // i):
+                if Computation().test_prim(x // i):
                     ldiv.append(x // i)
         return ldiv
 
 
-# A new instance of the Coputation class is created and assigned to the calculation variable
-calculation = Coputation()
+# A new instance of the Computation class is created and assigned to the calculation variable
+calculation = Computation()
 
 # A while loop is used to keep the program running until the user chooses to exit
 while True:
@@ -103,9 +172,11 @@ while True:
             print(f"At least one of {n1} and {n2} is not a prime number")
     elif choice == "5":
         n = int(input("Enter a number to generate its multiplication table: "))
-        calculation.table_mult(n)
+        for result in calculation.table_mult(n):
+            print(result)
     elif choice == "6":
-        calculation.all_tables_mult()
+        result = calculation.all_tables_mult
+        print(result)
     elif choice == "7":
         n = int(input("Enter a number to list its divisors: "))
         print(f"Divisors of {n} are {calculation.list_div(n)}")
