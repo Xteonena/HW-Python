@@ -3,17 +3,50 @@ import matplotlib.pyplot as plt
 
 
 class circle:
-    def __init__(self, center, rad):
+    """
+    This class creates a circle object and provides methods to calculate area and perimeter, as well as
+    check if a point is inside the circle.
+    """
+
+    def __init__(self, center: tuple[float, float], rad: float):
+        """
+        Initializes a circle object with the given center and radius.
+
+        Args:
+            center (tuple): a tuple representing the (x, y) coordinates of the center of the circle.
+            radius (float): a float representing the radius of the circle.
+        """
         self.center = center
         self.radius = rad
 
-    def area(self):
+    def area(self) -> float:
+        """
+        Calculates the area of the circle.
+
+        Returns:
+            A float representing the area of the circle.
+        """
         return math.pi * self.radius ** 2
 
-    def perimeter(self):
+    def perimeter(self) -> float:
+        """
+        Calculates the perimeter of the circle.
+
+        Returns:
+            A float representing the perimeter of the circle.
+        """
         return 2 * math.pi * self.radius
 
-    def test_belongs(self, point):
+    def test_belongs(self, point: tuple[float, float]) -> bool:
+        """
+        Checks whether a given point is inside the circle or not.
+
+        Args:
+            point (tuple): a tuple representing the (x, y) coordinates of the point to be tested.
+
+        Returns:
+            A boolean value: True if the point is inside the circle, False otherwise.
+        """
         x, y = point
         a, b = self.center
         return (x - a) ** 2 + (y - b) ** 2 <= self.radius ** 2
